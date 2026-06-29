@@ -1,4 +1,4 @@
-import {EventEmitter} from "events"
+import { EventEmitter } from "events"
 
 class Input extends EventEmitter {
   sequenceOfNumbersInput: HTMLInputElement
@@ -9,7 +9,7 @@ class Input extends EventEmitter {
     super()
 
     this.sequenceOfNumbersInput = document.querySelector("#sequencer")!
-    this.form =  document.querySelector("form")!
+    this.form = document.querySelector("form")!
 
     if (!this.sequenceOfNumbersInput) {
       throw Error("Input não reconhecido")
@@ -19,7 +19,7 @@ class Input extends EventEmitter {
     this.form.addEventListener("submit", (e) => this.onSubmit(e))
   }
 
-  public onSubmit(e: SubmitEvent | Event){
+  public onSubmit(e: SubmitEvent | Event) {
     e.preventDefault()
 
     this.emit("update")
@@ -31,7 +31,7 @@ class Input extends EventEmitter {
 
     let cleanValue = this.sequenceOfNumbersInput.value
       .replace(/[^0-9 ]/g, '')
-      .replace(/\s+/g, ' ')   
+      .replace(/\s+/g, ' ')
 
     this.sequenceOfNumbersInput.value = cleanValue
 
@@ -43,15 +43,27 @@ class Input extends EventEmitter {
     this.degreeList = cleanValue.split(" ").map(numStr => parseInt(numStr, 10))
   }
 
-  public isGraphSequence(): boolean {
+
+  public isMultigraphSequence() {
+    if (this.degreeList.length === 0) return false
+
+    const totalSum = this.degreeList.reduce((acc, curr) => acc + curr, 0)
+
+    if (totalSum % 2 === 0) {
+      return true
+    }
+
+    return false
+  }
+
+  public isSimpleGraphSequence(): boolean {
     if (this.degreeList.length === 0) return false
     console.log("degreeList not empty")
 
-    const sortedDegrees = this.degreeList.toSorted((a, b) => a - b).filter(x => !isNaN(x))
+    const sortedDegrees = this.degreeList.toSorted((a, b) => b - a).filter(x => !isNaN(x))
     console.log(sortedDegrees)
 
-    const totalSum = sortedDegrees.reduce((acc, curr) => acc + curr, 0)
-    if (totalSum % 2 !== 0) return false
+    if (!this.isMultigraphSequence()) return false
 
     const n = sortedDegrees.length
 

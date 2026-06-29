@@ -1,0 +1,14 @@
+.footnote{
+  color: #888;
+
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  
+}
+.title {
+  font-size: min(3.5vw, 64px);
+  font-family: sans-serif;
+
+  color: #444;
+}

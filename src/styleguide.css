@@ -10,13 +10,16 @@
   --section-padding: 5em;
 
   --input-height: 40px;
+
+  --color-blue: #2B7CE9;
+  --color-blue-light: #97C2FC;
 }
 
 #vis {
   padding-top: var(--section-padding);
   padding-inline: var(--container-padding);
   width: 100%;
-  height: calc(100vh - var(--container-padding) - 40px);
+  height: calc(100vh - 2 * var(--section-padding) - var(--container-padding) - 40px);
 
 }
 
@@ -66,4 +69,25 @@ label {
   position: relative;
 
   padding-inline: var(--container-padding);
+}
+
+.section {
+  padding-top: var(--section-padding);
+}
+
+button {
+  width: 100%;
+  max-width: 300px;
+  padding: 6px 16px;
+  margin-top: 1em;
+
+  background-color: var(--color-blue);
+  border: 2px solid var(--color-blue-light);
+
+
+  color: white;
+
+  border-radius: 0.1em;
+
+  cursor: pointer;
 }

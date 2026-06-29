@@ -1,20 +1,30 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Visualizador de Sequência Gráfica</title>
-  </head>
-  <body>
-    <div id="vis"></div>
-    <form class="container" action="">
-      <fieldset>
-        <label for="sequencer">Informe a sequência gráfica</label>
-        <input id="sequencer" type="text">
-      </fieldset>
-    </form>
 
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visualizador de Sequência Gráfica</title>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <small class="footnote">Usando algoritmo de Erdos Gallai</small>
+      <h1 class="title">Revelador de Sequência gráfica</h1>
+      <div id="vis"></div>
+      <form class="form" action="">
+        <fieldset>
+          <label for="sequencer">Informe a sequência gráfica</label>
+          <input id="sequencer" type="text">
+        </fieldset>
+        <button type="submit">Confirmar</button>
+      </form>
+    </div>
+  </section>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>

@@ -39,10 +39,14 @@ export default class Experience {
 
   public update(){
     console.log("Updated graph")
-    if (this.input.isGraphSequence()){
-      this.graphs.update()
-      this.graphs.drawGraph()
-      return 
+    if(this.input.isMultigraphSequence()){
+      if (this.input.isSimpleGraphSequence()){
+        this.graphs.update()
+        this.graphs.drawGraph()
+        return 
+      } 
+
+
     }
 
     this.graphs.eraseGraph() 
