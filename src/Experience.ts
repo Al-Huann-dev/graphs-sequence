@@ -1,12 +1,13 @@
 import Input from "./Input"
-import Graphs from "./Graphs"
+import {SimpleGraphs, Multigraphs} from "./Graphs"
 
 export default class Experience {
   private static _instance: Experience
 
   canvas = document.querySelector<HTMLCanvasElement>("#vis")
   public input!: Input
-  public graphs!: Graphs
+  public simpleGraphs!: SimpleGraphs
+  public multigraphs!: Multigraphs
   
   private constructor(){
     if (Experience._instance){
@@ -19,7 +20,8 @@ export default class Experience {
     }
 
     this.input = new Input()
-    this.graphs = new Graphs()
+    this.simpleGraphs = new SimpleGraphs()
+    this.multigraphs = new Multigraphs()
 
     console.log("Passou do graph e input")
 
@@ -38,19 +40,23 @@ export default class Experience {
   }
 
   public update(){
-    const message = this.input.getSubmitMessage()
+    this.input.setSubmitMessage()
     
     if(this.input.isMultigraphSequence()){
       if (this.input.isSimpleGraphSequence()){
-        this.graphs.update()
-        this.graphs.drawGraph()
+        this.simpleGraphs.update()
+        this.simpleGraphs.draw()
         return 
       } 
 
+      this.multigraphs.update()
+      this.multigraphs.draw()
+      return
 
     }
 
-    this.graphs.eraseGraph() 
+    this.simpleGraphs.eraseGraph() 
+    this.multigraphs.eraseGraph() 
   }
 
 }

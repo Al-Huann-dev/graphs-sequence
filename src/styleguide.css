@@ -56,8 +56,13 @@ body[data-input-status="not-graph-sequence"] input {
   border-color: var(--color-red);
 }
 
-body[data-input-status="is-simple-graph"] input {
-  border-color: var(--color-green);
+body[data-input-status="is-simple-graph"] input,
+body[data-input-status="is-only-multigraph"] input:is(:active, :focus) {
+  border-color: var(--color-green) !important;
+}
+
+body[data-input-status="not-graph-sequence"] input {
+  border-color: var(--color-red);
 }
 
 label {
@@ -84,6 +89,10 @@ body[data-input-status="is-simple-graph"] label {
 
 body[data-input-status="is-only-multigraph"] label {
   color: var(--color-green);
+}
+
+body[data-input-status="not-graph-sequence"] label {
+  color: var(--color-red);
 }
 
 /* UTILS */

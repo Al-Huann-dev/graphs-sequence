@@ -28,24 +28,24 @@ class Input extends EventEmitter {
     this.emit("update")
   }
 
-  public getSubmitMessage() {
+  public setSubmitMessage(): void {
     const isSimple = this.isSimpleGraphSequence();
     const isMulti = this.isMultigraphSequence();
     
     if (isSimple) {
       document.body.dataset.inputStatus = "is-simple-graph";
-      this.message.innerHTML = "Sequência válida para grafo simples."
+      this.message.innerHTML = "É possível realizar a por um grafo simples."
       return
     }
 
     if (isMulti) {
       document.body.dataset.inputStatus = "is-only-multigraph";
-      this.message.innerHTML = "Sequência válida apenas para multigrafos/laços."
+      this.message.innerHTML = "É possível realizar a sequência apenas por multigrafos."
       return
     }
 
     document.body.dataset.inputStatus = "not-graph-sequence";
-    this.message.innerHTML = "Sequência completamente inválida (Soma ímpar ou impossível)."
+    this.message.innerHTML = "Não é possível realizar a sequência por um grafo simples ou um multigrafo!"
   }
 
   public onInputChange(e: InputEvent | Event) {
