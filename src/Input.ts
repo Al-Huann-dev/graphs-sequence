@@ -4,12 +4,15 @@ class Input extends EventEmitter {
   sequenceOfNumbersInput: HTMLInputElement
   form: HTMLFormElement
   degreeList: number[] = []
+  message: HTMLSpanElement
 
   constructor() {
     super()
 
     this.sequenceOfNumbersInput = document.querySelector("#sequencer")!
     this.form = document.querySelector("form")!
+    this.message = document.querySelector(".user-message")!
+    console.log(this.message)
 
     if (!this.sequenceOfNumbersInput) {
       throw Error("Input não reconhecido")
@@ -23,6 +26,26 @@ class Input extends EventEmitter {
     e.preventDefault()
 
     this.emit("update")
+  }
+
+  public getSubmitMessage() {
+    const isSimple = this.isSimpleGraphSequence();
+    const isMulti = this.isMultigraphSequence();
+    
+    if (isSimple) {
+      document.body.dataset.inputStatus = "is-simple-graph";
+      this.message.innerHTML = "Sequência válida para grafo simples."
+      return
+    }
+
+    if (isMulti) {
+      document.body.dataset.inputStatus = "is-only-multigraph";
+      this.message.innerHTML = "Sequência válida apenas para multigrafos/laços."
+      return
+    }
+
+    document.body.dataset.inputStatus = "not-graph-sequence";
+    this.message.innerHTML = "Sequência completamente inválida (Soma ímpar ou impossível)."
   }
 
   public onInputChange(e: InputEvent | Event) {

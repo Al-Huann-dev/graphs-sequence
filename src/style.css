@@ -12,3 +12,45 @@
 
   color: #444;
 }
+
+.user-message {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  max-width: 250px;
+
+  font-size: 11px;
+  font-family: sans-serif;
+  color: var(--color-red);
+
+}
+
+body[data-input-status="is-simple-graph"] .user-message,
+body[data-input-status="is-only-multigraph"] .user-message {
+  color: var(--color-green);
+}
+
+button {
+  width: 100%;
+  max-width: 300px;
+  padding: 6px 16px;
+  margin-top: 1em;
+
+  background-color: var(--color-blue);
+  border: 2px solid var(--color-blue-light);
+
+
+  color: white;
+
+  border-radius: 0.1em;
+
+  cursor: pointer;
+}
+
+
+body[data-input-status="is-simple-graph"] button,
+body[data-input-status="is-only-multigraph"] button {
+  background-color: var(--color-green);
+  border: 2px solid green;
+}

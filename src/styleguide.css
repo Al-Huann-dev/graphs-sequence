@@ -13,11 +13,12 @@
 
   --color-blue: #2B7CE9;
   --color-blue-light: #97C2FC;
+  --color-red: #BA3E3E;
+  --color-green: #25A234;
 }
 
 #vis {
   padding-top: var(--section-padding);
-  padding-inline: var(--container-padding);
   width: 100%;
   height: calc(100vh - 2 * var(--section-padding) - var(--container-padding) - 40px);
 
@@ -43,24 +44,46 @@ input {
   background-color: #eee;
 
   border: 1px solid #aaa;
+  outline: none;
   border-radius: 6px;
 }
 
-input:active {
-  border: 1px solid rgb(41, 41, 187);
+input:is(:active, :focus)  {
+  border-color: var(--color-blue-light);
+}
+
+body[data-input-status="not-graph-sequence"] input {
+  border-color: var(--color-red);
+}
+
+body[data-input-status="is-simple-graph"] input {
+  border-color: var(--color-green);
 }
 
 label {
   position: absolute;
   top: 0;
   left: 0;
-
+  
   font-size: 12px;
   color: #aaa;
-
+  
   background-color: #eee;
-
+  
   transform: translate(8px, -50%);
+}
+
+input:is(:active, :focus) ~ label {
+  color: var(--color-blue-light);
+}
+
+
+body[data-input-status="is-simple-graph"] label {
+  color: var(--color-green);
+}
+
+body[data-input-status="is-only-multigraph"] label {
+  color: var(--color-green);
 }
 
 /* UTILS */

@@ -38,7 +38,8 @@ export default class Experience {
   }
 
   public update(){
-    console.log("Updated graph")
+    const message = this.input.getSubmitMessage()
+    
     if(this.input.isMultigraphSequence()){
       if (this.input.isSimpleGraphSequence()){
         this.graphs.update()
